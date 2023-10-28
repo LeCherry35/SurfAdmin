@@ -1,4 +1,4 @@
-import { UserInterface } from './../models/UserInterface';
+import { UserInterface } from '../models/user/UserInterface';
 import $api from "../http"
 import { AxiosResponse } from "axios"
 import { AuthResponse } from "../models/response/AuthResponce"
