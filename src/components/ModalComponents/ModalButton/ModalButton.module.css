@@ -1,0 +1,17 @@
+.modalButton_container {
+    border: 0.5px solid var(--font-color);
+    padding: 10px 20px;
+    border-radius: 0;
+    font-family: 'Roboto', sans-serif;
+    color: var(--secondary-font-color);
+    background-color: var(--secondary-background-color);transition: 0.5s;
+}
+
+.modalButton_container:hover {
+    transform: scale(1.1);
+}
+
+.modalButton_container:active {
+    transform: scale(1.05);
+}
+

@@ -1,0 +1,19 @@
+.inputContainer {
+    padding: 10px 20px;
+    font-family: 'Roboto';
+    border: 1px solid black;
+    border-radius: 0;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.inputContainer:hover{
+    transform: scale(1.1);
+}
+.inputContainer:focus{
+    outline: none;
+    transform: scale(1.05);
+    
+}
+
+

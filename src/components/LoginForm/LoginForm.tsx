@@ -1,7 +1,10 @@
 import React, {FC, useState} from 'react'
 import { useTypedDispatch } from '../../hooks/useTypedDispatch';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { register } from '../../store/asyncActions/user';
+import { register, logout, login } from '../../store/asyncActions/user';
+import ModalButton from '../ModalComponents/ModalButton/ModalButton';
+import styles from './LoginForm.module.css'
+import ModalInput from '../ModalComponents/ModalInput/ModalInput';
 
 const LoginForm: FC = () => {
   const dispatch = useTypedDispatch();
@@ -12,27 +15,49 @@ const LoginForm: FC = () => {
   const {isAuth, user, error, isLoading} = useTypedSelector(state => state.user)
 
   return (
-    <div>
-          loginForm
-        <input 
-            onChange={e => setEmail(e.target.value)} 
-            placeholder='email' 
-            type='text'
-            value={email}
-        />
-        <input 
-            onChange={e => setPassword(e.target.value)} 
-            placeholder='password' 
-            type='text'
-            value={password}
-        />
-        <button onClick={(e) => {
-                        e.preventDefault()
-                        dispatch(register(email, password))
-                        if (isAuth) setEmail('')
-                        setPassword('')
-        }}
-        >Registration</button>
+    <div className='modal-container'>
+      {isAuth ? 
+        <div className={styles.loginContainer}>
+          <ModalButton name='logout' onClick={(e) => {
+            e.preventDefault()
+            dispatch(logout())
+            if (isAuth) setEmail('')
+            setPassword('')
+          }}
+          />
+        </div> 
+        : <div className={styles.loginContainer}>
+          <ModalInput 
+              onChange={e => setEmail(e.target.value)} 
+              placeholder='email' 
+              value={email}
+              type='text'
+          />
+          <ModalInput
+              onChange={e => setPassword(e.target.value)} 
+              placeholder='password' 
+              type='password'
+              value={password}
+          />
+          <ModalButton name="registration" onClick={(e) => {
+            e.preventDefault()
+            dispatch(register(email, password))
+            if (isAuth) setEmail('')
+            setPassword('')
+            console.log('%%3',error);
+            
+          }}
+          />
+          <ModalButton name='login' onClick={(e) => {
+            e.preventDefault()
+            dispatch(login(email, password))
+            if (isAuth) setEmail('')
+            setPassword('')
+          }}
+          />
+
+        </div>
+      }
     </div>
   )
 }

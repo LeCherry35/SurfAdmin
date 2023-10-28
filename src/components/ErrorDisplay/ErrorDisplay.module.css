@@ -1,0 +1,19 @@
+.errorDisplay_container {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--error-color);
+    animation-name: fadeIn;
+    animation-duration: 0.7s;
+}
+
+@keyframes fadeIn {
+    0%{
+
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
