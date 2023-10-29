@@ -1,7 +1,6 @@
 import { UserActionTypes, UserAction } from '../../models/user/user'
 import { Dispatch } from "redux"
 import AuthService from '../../service/AuthService'
-import { log } from 'console'
 
 export const login = (email: string, password: string) => {
     return async (dispatch: Dispatch<UserAction>) => {
@@ -47,7 +46,6 @@ export const checkAuth = () => {
     return async (dispatch: Dispatch<UserAction>) => {
         try {
             const response = await AuthService.checkAuth()
-            console.log('ressponse', response);
             
             localStorage.setItem('token', response.data.accessToken)
             

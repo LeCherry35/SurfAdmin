@@ -44,7 +44,6 @@ const LoginForm: FC = () => {
             dispatch(register(email, password))
             if (isAuth) setEmail('')
             setPassword('')
-            console.log('%%3',error);
             
           }}
           />
