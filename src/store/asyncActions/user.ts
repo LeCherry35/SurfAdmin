@@ -6,6 +6,7 @@ export const login = (email: string, password: string) => {
     return async (dispatch: Dispatch<UserAction>) => {
         try {
             dispatch({type: UserActionTypes.LOADING})
+
             const response = await AuthService.login(email, password)
             localStorage.setItem('token', response.data.accessToken)
             localStorage.setItem('refreshToken', response.data.refreshToken)
@@ -46,6 +47,8 @@ export const logout = () => {
 export const checkAuth = () => {
     return async (dispatch: Dispatch<UserAction>) => {
         try {
+            
+            dispatch({type: UserActionTypes.LOADING})
             const response = await AuthService.checkAuth()
             
             localStorage.setItem('token', response.data.accessToken)

@@ -5,6 +5,7 @@ import { register, logout, login } from '../../store/asyncActions/user';
 import ModalButton from '../ModalComponents/ModalButton/ModalButton';
 import styles from './LoginForm.module.css'
 import ModalInput from '../ModalComponents/ModalInput/ModalInput';
+import Loading from '../Loading/Loading';
 
 const LoginForm: FC = () => {
   const dispatch = useTypedDispatch();
@@ -16,6 +17,7 @@ const LoginForm: FC = () => {
 
   return (
     <div className='modal-container'>
+      {isLoading && <Loading/>} 
       {isAuth ? 
         <div className={styles.loginContainer}>
           <ModalButton name='logout' onClick={(e) => {
