@@ -17,7 +17,7 @@ export default class AuthService {
     }
 
     static async checkAuth(): Promise <AxiosResponse<AuthResponse>> {
-        return axios.get<AuthResponse>(`${API_URL}/refresh`)
+        return $api.get<AuthResponse>(`${API_URL}/refresh`)
 
     }
 }

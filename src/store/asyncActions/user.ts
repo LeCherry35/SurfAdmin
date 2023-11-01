@@ -8,6 +8,7 @@ export const login = (email: string, password: string) => {
             dispatch({type: UserActionTypes.LOADING})
             const response = await AuthService.login(email, password)
             localStorage.setItem('token', response.data.accessToken)
+            localStorage.setItem('refreshToken', response.data.refreshToken)
             dispatch({type: UserActionTypes.SET_USER, payload: response.data.user})
         } catch (e: any) {
             dispatch({type: UserActionTypes.CLEAR_ERROR, payload: e.response?.data?.message || e.message})

@@ -7,23 +7,28 @@ const $api = axios.create({
 })
 
 $api.interceptors.request.use(config => {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+    if(/login/.test(config.url ?? '')) return config;
+
+    if (/refresh/.test(config.url ?? '')) {
+        config.headers.refresh_token = `${localStorage.getItem('refreshToken')}`
+    } else {
+        config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+    }
     return config
 })
 
 $api.interceptors.response.use((config) => {
     return config
 }, async (error) => {
+    const { config } = error;
 
-    const originalRequest = error.config
-    if(error.response.status === 401 && error.config && !error.config.isRetry ) {
-        originalRequest.isRetry = true
+    if(error.response.status === 401 && config && !config.isRetry ) {
         try {
-        console.log('1');
             
             const response = await axios.get<AuthResponse>(`${API_URL}/refresh`)
+
             localStorage.setItem('token', response.data.accessToken)
-            return $api.request(originalRequest)
+            return $api.request(config)
         } catch {
             console.log('User is not authorized');
         }
