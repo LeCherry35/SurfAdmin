@@ -12,6 +12,8 @@ export const login = (email: string, password: string) => {
             localStorage.setItem('refreshToken', response.data.refreshToken)
             dispatch({type: UserActionTypes.SET_USER, payload: response.data.user})
         } catch (e: any) {
+            console.log('^^^',e);
+            
             dispatch({type: UserActionTypes.CLEAR_ERROR, payload: e.response?.data?.message || e.message})
         }
     }

@@ -6,7 +6,8 @@ import ErrorDisplay from './components/ErrorDisplay/ErrorDisplay';
 import NavBar from './components/NavBar/NavBar';
 import { useTypedDispatch } from './hooks/useTypedDispatch';
 import { checkAuth } from './store/asyncActions/user';
-import { log } from 'console';
+import Day from './components/Day/Day';
+import Settings from './components/Settings/Settings';
 
 function App() {
 
@@ -26,6 +27,9 @@ function App() {
         <ErrorDisplay/>
         <Routes>
         <Route path='/auth' element={<LoginForm/>} />
+        <Route path='/day' element={<Day/>} />
+        <Route path='/settings' element={<Settings/>} />
+
         </Routes>
       </BrowserRouter>
     </div>

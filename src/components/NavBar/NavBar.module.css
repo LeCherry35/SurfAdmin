@@ -1,6 +1,8 @@
 .navBar_container {
     position: absolute;
     padding: 10px 20px;
+    display: flex;
+    gap: 20px;
 
 }
 
